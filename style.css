@@ -1,0 +1,90 @@
+/* ===== Cores (tema claro e escuro) ===== */
+:root{
+  --bg:#e8f5e1; --card:#ffffff; --ink:#1f3a2a; --mut:#5b7a66;
+  --pri:#2e9e5b; --pri2:#1f7a43; --bad:#d64545; --gold:#f2b705;
+  --track:#cfe8c4; --btn:#f4fbef; --bd:#b9dcae;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#10231a; --card:#183226; --ink:#e8f5e1; --mut:#9ec3ac;
+    --pri:#3fbf74; --pri2:#2e9e5b; --bad:#ff7070; --gold:#ffd23f;
+    --track:#244a36; --btn:#1f4030; --bd:#2f5a43;
+    color-scheme:dark;
+  }
+}
+
+/* ===== Base ===== */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Trebuchet MS",system-ui,-apple-system,"Segoe UI",sans-serif;
+  display:flex; justify-content:center; padding:12px;
+}
+#app{width:100%;max-width:560px;display:flex;flex-direction:column;gap:12px}
+.card{background:var(--card);border-radius:18px;padding:16px;box-shadow:0 3px 0 var(--bd)}
+h1{margin:0;font-size:1.7rem;text-align:center}
+.sub{text-align:center;color:var(--mut);margin:4px 0 12px}
+.hide{display:none!important}
+.center{text-align:center}
+.big{font-size:4rem}
+button{font:inherit;color:var(--ink);cursor:pointer}
+
+/* ===== Menu ===== */
+.menu-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.op{
+  background:var(--btn); border:2px solid var(--bd); border-radius:14px;
+  padding:14px 8px; font-size:1.1rem; font-weight:700; transition:transform .1s;
+}
+.op:hover{transform:translateY(-2px);border-color:var(--pri)}
+.op span{display:block;font-size:1.8rem}
+.wide{grid-column:1/-1}
+
+/* ===== Painel (HUD) ===== */
+.hud{display:flex;justify-content:space-between;align-items:center;gap:8px;font-weight:700;flex-wrap:wrap}
+.pill{background:var(--btn);border:2px solid var(--bd);border-radius:999px;padding:4px 12px}
+.bar{height:16px;background:var(--track);border-radius:999px;overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pri),var(--gold));transition:width .4s}
+
+/* ===== Cenário ===== */
+.scene{
+  position:relative; height:120px;
+  background:linear-gradient(var(--track),var(--card));
+  border-radius:14px; overflow:hidden; border-bottom:8px solid var(--pri2);
+}
+#panda{
+  position:absolute; bottom:2px; left:6px; font-size:56px; line-height:1;
+  transition:left .6s cubic-bezier(.3,1.4,.5,1),transform .3s;
+  transform-origin:bottom center;
+}
+#goal{position:absolute;right:6px;bottom:2px;font-size:56px;line-height:1}
+
+/* ===== Animações ===== */
+.hop{animation:hop .5s}
+.shake{animation:shake .5s}
+@keyframes hop{0%,100%{translate:0 0}40%{translate:0 -28px}}
+@keyframes shake{0%,100%{translate:0}20%{translate:-10px}40%{translate:10px}60%{translate:-8px}80%{translate:8px}}
+.float{position:absolute;font-weight:800;color:var(--pri2);animation:up 1s forwards;pointer-events:none}
+@keyframes up{to{translate:0 -50px;opacity:0}}
+
+/* ===== Pergunta e respostas ===== */
+.q{font-size:2.4rem;font-weight:800;text-align:center;margin:8px 0}
+.ans{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ans button{
+  background:var(--btn); border:2px solid var(--bd); border-radius:14px;
+  padding:16px; font-size:1.6rem; font-weight:800;
+}
+.ans button:hover:not(:disabled){border-color:var(--pri);transform:translateY(-2px)}
+.ans button.ok{background:var(--pri);color:#fff;border-color:var(--pri2)}
+.ans button.no{background:var(--bad);color:#fff}
+.msg{min-height:1.6em;text-align:center;font-weight:700}
+
+/* ===== Botões gerais ===== */
+.primary{
+  background:var(--pri); color:#fff; border:0; border-radius:14px;
+  padding:12px 20px; font-size:1.1rem; font-weight:800; box-shadow:0 3px 0 var(--pri2);
+}
+.link{background:none;border:0;color:var(--mut);text-decoration:underline;font-size:.9rem}
